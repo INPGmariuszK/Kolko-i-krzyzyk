@@ -1,6 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# stałe globalne
+X = "X"
+O = "O"
+EMPTY = " "
+TIE = "TIE"
+NUM_SQUARES = 9
+
 """
 Kółko i krzyżyk
 Komputer gra w kółko i krzyżyk przeciwko człowiekowi

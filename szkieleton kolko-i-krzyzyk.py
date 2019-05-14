@@ -6,6 +6,13 @@ Kółko i krzyżyk
 Komputer gra w kółko i krzyżyk przeciwko człowiekowi
 """
 
+# stałe globalne
+X = "X"
+O = "O"
+EMPTY = " "
+TIE = "TIE"
+NUM_SQUARES = 9
+
 # wyświetla zasady gry i obsługi programu
 def display_instruct():
 

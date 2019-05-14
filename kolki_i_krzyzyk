@@ -67,6 +67,22 @@ def human_move(board, human):
 
 # implementacja algorytmu otpowiadającego za grę komputera
 def computer_move(board, computer, human):
+  """Spowoduj wykonanie ruchu przez komputer."""
+    # utwórz kopię roboczą, ponieważ funkcja będzie zmieniać listę
+    board = board[:]
+    # najlepsze pozycje do zajęcia według kolejności
+    BEST_MOVES = (4, 0, 2, 6, 8, 1, 3, 5, 7)
+
+    print("Wybieram pole numer", end=" ")
+    
+    # jeśli komputer może wygrać, wykonaj ten ruch
+    for move in legal_moves(board):
+        board[move] = computer
+        if winner(board) == computer:
+            print(move)
+            return move
+        # ten ruch został sprawdzony, wycofaj go
+        board[move] = EMPTY
 
 # zmiana wykonawcy ruchu
 def next_turn(turn):

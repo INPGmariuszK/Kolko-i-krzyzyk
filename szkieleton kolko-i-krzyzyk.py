@@ -37,44 +37,17 @@ def display_instruct():
  
 # odebranie od użytkownika decyzji, kto powinien rozpocząć grę
 def ask_yes_no(question):
- """Zadaj pytanie, na które można odpowiedzieć tak lub nie."""
-    response = None
-    while response not in ("t", "n"):
-        response = input(question).lower()
-    return response
+
 
 # zadanie pytania użytkownikowi, pole o którym numerze, chce zająć
 # posiada system zabezpieczający przed podaniem liczby spoza zakresu
 def ask_number(question, low, high):
-     """Poproś o podanie liczby z odpowiedniego zakresu."""
-    response = None
-    while response not in range(low, high):
-        response = int(input(question))
-    return response
-
+     
 # ustalenie do kogo należy ruch i przypisanie graczowi odpowiedniego znaku (X lub O)
 def pieces():
-"""Ustal, czy pierwszy ruch należy do gracza, czy do komputera."""
-    go_first = ask_yes_no("Czy chcesz mieć prawo do pierwszego ruchu? (t/n): ")
-    if go_first == "t":
-        print("\nWięc pierwszy ruch należy do Ciebie.  Będzie Ci potrzebny.")
-        human = X
-        computer = O
-    else:
-        print("\nTwoja odwaga Cię zgubi... Ja wykonuję pierwszy ruch.")
-        computer = X
-        human = O
-    return computer, human
-
 
 # wyświetla planszę do gry
 def display_board(board):
-        """Wyświetl planszę gry na ekranie."""
-    print("\n\t", board[0], "|", board[1], "|", board[2])
-    print("\t", "---------")
-    print("\t", board[3], "|", board[4], "|", board[5])
-    print("\t", "---------")
-    print("\t", board[6], "|", board[7], "|", board[8], "\n")
 
 # komunikat o błędnym ruchu
 def false_move():
@@ -87,26 +60,7 @@ def print_computer_move(move):
 
 # wyświetla wynik gry
 def congrat_winner(the_winner, computer, human):
-    """Pogratuluj zwycięzcy."""
-    if the_winner != TIE:
-        print(the_winner, "jest zwycięzcą!\n")
-    else:
-        print("Remis!\n")
-
-    if the_winner == computer:
-        print("Jak przewidywałem, Człowieku, jeszcze raz zostałem triumfatorem.  \n" \
-              "Dowód na to, że komputery przewyższają ludzi pod każdym względem.")
-
-    elif the_winner == human:
-        print("No nie!  To niemożliwe!  Jakoś udało Ci się mnie zwieść, Człowieku. \n" \
-              "Ale to się nigdy nie powtórzy!  Ja, komputer, przyrzekam Ci to!")
-
-    elif the_winner == TIE:
-        print("Miałeś mnóstwo szczęścia, Człowieku, i jakoś udało Ci się ze mną " \
-              "zremisować. \nŚwiętuj ten dzień... bo to najlepszy wynik, jaki możesz " \
-              "kiedykolwiek osiągnąć.")
-
-
+   
 """
 / \
  |
@@ -121,55 +75,16 @@ Funkcje odpowiadające, za właściwą grę
 
 # tworzy nową planszę do gry
 def new_board():
-    """Utwórz nową planszę gry."""
-    board = []
-    for square in range(NUM_SQUARES):
-        board.append(EMPTY)
-    return board
-
+    
 # sprawdza dozwolone ruchy na zadanej planszy
 def legal_moves(board):
-    """Utwórz listę prawidłowych ruchów."""
-    moves = []
-    for square in range(NUM_SQUARES):
-        if board[square] == EMPTY:
-            moves.append(square)
-    return moves
 
 # sprawdza wynik gry, decyduje także o remisie
 def winner(board):
-  """Ustal zwycięzcę gry."""
-    WAYS_TO_WIN = ((0, 1, 2),
-                   (3, 4, 5),
-                   (6, 7, 8),
-                   (0, 3, 6),
-                   (1, 4, 7),
-                   (2, 5, 8),
-                   (0, 4, 8),
-                   (2, 4, 6))
-      
-    for row in WAYS_TO_WIN:
-        if board[row[0]] == board[row[1]] == board[row[2]] != EMPTY:
-            winner = board[row[0]]
-            return winner
-
-    if EMPTY not in board:
-        return TIE
-
-    return None
 
 # odpowiada za przepisanie danych podanych od użytkownika to komputerowej reprezentacji planszy
 def human_move(board, human):
-  """Odczytaj ruch człowieka."""  
-    legal = legal_moves(board)
-    move = None
-    while move not in legal:
-        move = ask_number("Jaki będzie Twój ruch? (0 - 8):", 0, NUM_SQUARES)
-        if move not in legal:
-            print("\nTo pole jest już zajęte, niemądry Człowieku.  Wybierz inne.\n")
-    print("Znakomicie...")
-    return move
-
+ 
 # implementacja algorytmu otpowiadającego za grę komputera
 def computer_move(board, computer, human):
  """Spowoduj wykonanie ruchu przez komputer."""
@@ -218,37 +133,12 @@ def computer_move(board, computer, human):
 
 # zmiana wykonawcy ruchu
 def next_turn(turn):
- """Zmień wykonawcę ruchu."""
-    if turn == X:
-        return O
-    else:
-        return X
 
-    
 
 
 # main
 def main():
-  display_instruct()
-    computer, human = pieces()
-    turn = X
-    board = new_board()
-    display_board(board)
-
-    while not winner(board):
-        if turn == human:
-            move = human_move(board, human)
-            board[move] = human
-        else:
-            move = computer_move(board, computer, human)
-            board[move] = computer
-        display_board(board)
-        turn = next_turn(turn)
-
-    the_winner = winner(board)
-    congrat_winner(the_winner, computer, human)
-
-
+ 
 # rozpocznij program
 main()
 input("\n\nAby zakończyć grę, naciśnij klawisz Enter.")

@@ -90,7 +90,7 @@ def next_turn(turn):
 
 
 # main
-def main():truct()
+def main():
     computer, human = pieces()
     turn = X
     board = new_board()

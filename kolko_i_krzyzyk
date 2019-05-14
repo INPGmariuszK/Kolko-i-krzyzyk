@@ -54,6 +54,18 @@ def ask_number(question, low, high):
 
 # ustalenie do kogo należy ruch i przypisanie graczowi odpowiedniego znaku (X lub O)
 def pieces():
+    """Ustal, czy pierwszy ruch należy do gracza, czy do komputera."""
+    go_first = ask_yes_no("Czy chcesz mieć prawo do pierwszego ruchu? (t/n): ")
+    if go_first == "t":
+        print("\nWięc pierwszy ruch należy do Ciebie.  Będzie Ci potrzebny.")
+        human = X
+        computer = O
+    else:
+        print("\nTwoja odwaga Cię zgubi... Ja wykonuję pierwszy ruch.")
+        computer = X
+        human = O
+    return computer, human
+
 
 # wyświetla planszę do gry
 def display_board(board):
@@ -75,6 +87,25 @@ def print_computer_move(move):
 
 # wyświetla wynik gry
 def congrat_winner(the_winner, computer, human):
+    """Pogratuluj zwycięzcy."""
+    if the_winner != TIE:
+        print(the_winner, "jest zwycięzcą!\n")
+    else:
+        print("Remis!\n")
+
+    if the_winner == computer:
+        print("Jak przewidywałem, Człowieku, jeszcze raz zostałem triumfatorem.  \n" \
+              "Dowód na to, że komputery przewyższają ludzi pod każdym względem.")
+
+    elif the_winner == human:
+        print("No nie!  To niemożliwe!  Jakoś udało Ci się mnie zwieść, Człowieku. \n" \
+              "Ale to się nigdy nie powtórzy!  Ja, komputer, przyrzekam Ci to!")
+
+    elif the_winner == TIE:
+        print("Miałeś mnóstwo szczęścia, Człowieku, i jakoś udało Ci się ze mną " \
+              "zremisować. \nŚwiętuj ten dzień... bo to najlepszy wynik, jaki możesz " \
+              "kiedykolwiek osiągnąć.")
+
 
 """
 / \

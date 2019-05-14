@@ -118,6 +118,22 @@ def computer_move(board, computer, human):
             return move
         # ten ruch został sprawdzony, wycofaj go
         board[move] = EMPTY
+     # jeśli człowiek może wygrać, zablokuj ten ruch
+    for move in legal_moves(board):
+        board[move] = human
+        if winner(board) == human:
+            print(move)
+            return move
+        # ten ruch został sprawdzony, wycofaj go
+        board[move] = EMPTY
+
+    # ponieważ nikt nie może wygrać w następnym ruchu, wybierz najlepsze wolne pole
+    for move in BEST_MOVES:
+        if move in legal_moves(board):
+            print(move)
+            return move
+
+
 
 # zmiana wykonawcy ruchu
 def next_turn(turn):

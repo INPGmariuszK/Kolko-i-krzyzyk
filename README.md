@@ -10,8 +10,8 @@ Opisane w kursie: http://home.agh.edu.pl/~mdig/dokuwiki/doku.php?id=teaching:pro
 # Załączone testy
 
 # Autorzy
-Iwona Giczan
-Julia Gajtkowska
-Karolina Kulpa
-Paweł Kolendo
-Mariusz Kuchta
+Iwona Giczan <br />
+Julia Gajtkowska <br />
+Karolina Kulpa <br />
+Paweł Kolendo <br />
+Mariusz Kuchta <br />

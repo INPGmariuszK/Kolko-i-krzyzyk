@@ -78,12 +78,15 @@ def display_board(board):
     
 # komunikat o błędnym ruchu
 def false_move():
+   print("\nTo pole jest już zajęte, niemądry Człowieku.  Wybierz inne.\n")
 
 # komunikat o poprawnym ruchu
 def move_accepted():
+   print("Znakomicie...")
 
 # podanie informacji o ruchu komputera
 def print_computer_move(move):
+   print("Wybieram pole numer", move)
 
 # wyświetla wynik gry
 def congrat_winner(the_winner, computer, human):

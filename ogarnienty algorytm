@@ -81,12 +81,12 @@ def display_board(board):
 
 # komunikat o błędnym ruchu
 def false_move():
-    print("To pole jest zajente")
+    print("To pole jest zajęte")
 
 
 # komunikat o poprawnym ruchu
 def move_accepted():
-    print("Wybrauesi pole numer", end=" ")
+    print("Wybrałeś pole numer", end=" ")
 
 
 # podanie informacji o ruchu komputera

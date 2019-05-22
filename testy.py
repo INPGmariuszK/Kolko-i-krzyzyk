@@ -11,3 +11,6 @@ class FirstTest(unittest.TestCase):
 
     def test_second_test(self):
         self.assertNotEqual("O", next_turn("O"))
+        
+    def test_false_move(self)
+        self.assertEqual("To pole jest zajęte", false_move())

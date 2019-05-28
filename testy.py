@@ -14,3 +14,9 @@ class FirstTest(unittest.TestCase):
         
     def test_false_move(self)
         self.assertEqual("To pole jest zajęte", false_move())
+
+ 
+class HumanMoveTest(unittest.TestCase):
+    def test(self):
+        self.assertEqual(human_move(), human_move(10, human))
+        self.assertEqual(move, human_move(4, human))

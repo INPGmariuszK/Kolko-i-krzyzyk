@@ -26,16 +26,14 @@ class WindowWithButtons(QWidget):
 
         mixer.init()
 
-        # dopóki nie istnieje plik w tej lokalizacji, dopóty ta linijka powinna być nieaktywna
-        # self.press_sound = mixer.Sound("music/press_effect.wav")
+        self.press_sound = mixer.Sound("music/press_effect.wav")
 
         self.buttons = []
 
-        # kawałek nieaktywny do czasu nowej implementacji silnika
-        #
-        # self.board = Board()
-        #
-        # self.turn = Turn()
+
+        self.board = Board()
+
+        self.turn = Turn()
 
         self.main_structure()
 
@@ -44,8 +42,7 @@ class WindowWithButtons(QWidget):
         self.setGeometry(500, 500, 500, 500)
         self.setWindowTitle('Kółko i krzyżyk')
 
-        # Do czasu znalezienia ikon, linijka nieaktywna
-        # self.setWindowIcon(QIcon("graphics/krzyz.ico"))
+        self.setWindowIcon(QIcon("graphics/krzyz.ico"))
 
         for button_nmb in range(0, 9):
             self.buttons.append(QPushButton(EMPTY, self))  # 'stała' EMPTY jest powinna zostać zdefiniowana w silniku
@@ -53,9 +50,8 @@ class WindowWithButtons(QWidget):
             self.buttons[button_nmb].setObjectName("button%d" % button_nmb)
             self.buttons[button_nmb].resize(100, 100)
 
-            # Do czasu znalezienia ikon, linijki nieaktywne
-            # self.buttons[button_nmb].setIcon(QIcon("EMPTY_ICON.ico"))
-            # self.buttons[button_nmb].setIconSize(QtCore.QSize(50, 50))
+            self.buttons[button_nmb].setIcon(QIcon("EMPTY_ICON.ico"))
+            self.buttons[button_nmb].setIconSize(QtCore.QSize(50, 50))
 
         self.buttons[0].move(50, 50)
 
@@ -77,9 +73,9 @@ class WindowWithButtons(QWidget):
 
         self.show()
 
-        # Do czasu znalezienia dzwięków, linijki nieaktywne
-        # mixer.music.load('music/background_music.wav')
-        # mixer.music.play(-1)
+
+        mixer.music.load('music/background_music.wav')
+        mixer.music.play(-1)
 
     def button_clicked(self):
 

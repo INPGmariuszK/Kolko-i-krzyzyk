@@ -12,6 +12,7 @@ from pygame import mixer
 # tymczasowy import
 from ogarnienty_algorytm import *
 
+
 # import nieaktywny do czasu nowej implementacji silnika gry
 # from engine import *
 
@@ -76,11 +77,9 @@ class WindowWithButtons(QWidget):
 
         self.show()
 
-
         # Do czasu znalezienia dzwięków, linijki nieaktywne
         # mixer.music.load('music/background_music.wav')
         # mixer.music.play(-1)
-
 
     def button_clicked(self):
 
@@ -162,8 +161,10 @@ class WindowWithButtons(QWidget):
                 else:
                     self.close()
 
+
 def change_theme():
     pass
+
 
 if __name__ == "__main__":
     pass

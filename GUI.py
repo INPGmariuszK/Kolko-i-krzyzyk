@@ -40,7 +40,7 @@ class WindowWithButtons(QWidget):
         # self.setWindowIcon(QIcon("graphics/krzyz.ico"))
 
         for button_nmb in range(0, 9):
-            self.buttons.append(QPushButton(EMPTY, self))
+            self.buttons.append(QPushButton(EMPTY, self))  # 'stała' EMPTY jest powinna zostać zdefiniowana w silniku
             self.buttons[button_nmb].clicked.connect(self.button_clicked)
             self.buttons[button_nmb].setObjectName("button%d" % button_nmb)
             self.buttons[button_nmb].resize(100, 100)

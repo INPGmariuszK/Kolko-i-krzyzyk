@@ -42,7 +42,7 @@ class WindowWithButtons(QWidget):
         self.setGeometry(500, 500, 500, 500)
         self.setWindowTitle('Kółko i krzyżyk')
 
-        self.setWindowIcon(QIcon("graphics/krzyz.ico"))
+        self.setWindowIcon(QIcon("graphics/cross.ico"))
 
         for button_nmb in range(0, 9):
             self.buttons.append(QPushButton(EMPTY, self))  # 'stała' EMPTY jest powinna zostać zdefiniowana w silniku
@@ -103,6 +103,7 @@ class WindowWithButtons(QWidget):
             # w przypadku remisu
             if winner(self.board.give_board()) == TIE:
                 mixer.music.set_volume(0.5)
+                mixer.Channel(2).play(mixer.Sound("music/tie.wav"))
                 rep = QMessageBox.question(self, 'Koniec gry', "Remis       \n\nCzy chcesz zagrać jeszcze raz?",
                                            QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
 
@@ -121,6 +122,7 @@ class WindowWithButtons(QWidget):
             # w przypadku wygranej X == człowieka
             elif winner(self.board.give_board()) == "X":
                 mixer.music.set_volume(0.5)
+                mixer.Channel(2).play(mixer.Sound("music/win.wav"))
                 rep = QMessageBox.question(self, 'Koniec gry',
                                            "Brawo, zwyciężyłeś!       \n\nCzy chcesz zagrać jeszcze raz?",
                                            QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -139,6 +141,7 @@ class WindowWithButtons(QWidget):
             # w przypadku wygranej O == komputera
             elif winner(self.board.give_board()) == "O":
                 mixer.music.set_volume(0.5)
+                mixer.Channel(2).play(mixer.Sound("music/lose.wav"))
 
                 rep = QMessageBox.question(self, 'Koniec gry',
                                            "Tym razem komputer był lepszy       \n\nCzy chcesz zagrać jeszcze raz?",

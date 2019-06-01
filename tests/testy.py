@@ -18,5 +18,5 @@ class FirstTest(unittest.TestCase):
  
 class HumanMoveTest(unittest.TestCase):
     def test(self):
-        self.assertEqual(human_move(), human_move(10, human))
-        self.assertEqual(move, human_move(4, human))
+        self.assertEqual("Jaki będzie Twój ruch? (0 - 8):", human_move(10, human))
+        self.assertEqual(4, human_move(4, human)

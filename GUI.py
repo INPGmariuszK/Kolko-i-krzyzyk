@@ -2,8 +2,15 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5 import QtCore
 
 from pygame import mixer
+
+# tymczasowy import
+from ogarnienty_algorytm import *
 
 # import nieaktywny do czasu nowej implementacji silnika gry
 # from engine import *
@@ -76,7 +83,84 @@ class WindowWithButtons(QWidget):
 
 
     def button_clicked(self):
-        pass
+
+        button = self.sender()
+
+        # jeśli pole nie jest zajęte
+        if int(button.objectName()[-1:]) in legal_moves(self.board.give_board()):
+
+            mixer.Channel(1).play(self.press_sound)
+
+            # jeśli nie ma jeszcze zwycięzcy
+            if not winner(self.board.give_board()):
+                self.board.change_board(int(button.objectName()[-1:]), self.turn.give_turn())
+                self.turn.change_turn()
+                button.setIcon(QIcon("graphics/cross.ico"))
+                button.setIconSize(QtCore.QSize(50, 50))
+
+            if not winner(self.board.give_board()):
+                move = computer_move(self.board.give_board(), O, X)
+                self.board.change_board(move, self.turn.give_turn())
+                self.turn.change_turn()
+                self.buttons[move].setIcon(QIcon("graphics/circle.ico"))
+                self.buttons[move].setIconSize(QtCore.QSize(50, 50))
+
+            # w przypadku remisu
+            if winner(self.board.give_board()) == TIE:
+                mixer.music.set_volume(0.5)
+                rep = QMessageBox.question(self, 'Koniec gry', "Remis       \n\nCzy chcesz zagrać jeszcze raz?",
+                                           QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+
+                if rep == QMessageBox.Yes:
+
+                    self.board.reset_board()
+                    mixer.Channel(5).play(mixer.Sound('music/restart_effect.wav'))
+                    mixer.music.set_volume(1)
+
+                    for button in self.buttons:
+                        button.setIcon(QIcon("EMPTY_ICON.ico"))
+                        button.setIconSize(QtCore.QSize(50, 50))
+
+                else:
+                    self.close()
+            # w przypadku wygranej X == człowieka
+            elif winner(self.board.give_board()) == "X":
+                mixer.music.set_volume(0.5)
+                rep = QMessageBox.question(self, 'Koniec gry',
+                                           "Brawo, zwyciężyłeś!       \n\nCzy chcesz zagrać jeszcze raz?",
+                                           QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+
+                if rep == QMessageBox.Yes:
+                    self.board.reset_board()
+
+                    mixer.music.set_volume(1)
+
+                    for button in self.buttons:
+                        button.setIcon(QIcon("EMPTY_ICON.ico"))
+
+                else:
+                    self.close()
+
+            # w przypadku wygranej O == komputera
+            elif winner(self.board.give_board()) == "O":
+                mixer.music.set_volume(0.5)
+
+                rep = QMessageBox.question(self, 'Koniec gry',
+                                           "Tym razem komputer był lepszy       \n\nCzy chcesz zagrać jeszcze raz?",
+                                           QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+
+                if rep == QMessageBox.Yes:
+                    self.board.reset_board()
+
+                    for button in self.buttons:
+                        button.setIcon(QIcon("EMPTY_ICON.ico"))
+
+                    mixer.Channel(4).play(mixer.Sound('music/restart_effect.wav'))
+
+                    mixer.music.set_volume(1)
+
+                else:
+                    self.close()
 
 def change_theme():
     pass

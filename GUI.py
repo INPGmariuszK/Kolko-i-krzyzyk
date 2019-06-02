@@ -161,9 +161,21 @@ class WindowWithButtons(QWidget):
                     self.close()
 
 
-def change_theme():
-    pass
+def change_theme(app):
+    palette = QPalette()
 
+    # zmiana koloru okna
+    palette.setColor(QPalette.Window, QColor(30, 100, 100))
+
+    # zmiana koloru czcionki
+    palette.setColor(QPalette.WindowText, Qt.white)
+
+    # zmiana koloru przycisków
+    palette.setColor(QPalette.Button, QColor(30, 100, 100))
+    palette.setColor(QPalette.ButtonText, Qt.white)
+
+    # ustawienie wykonanej palety
+    app.setPalette(palette)
 
 if __name__ == "__main__":
     pass

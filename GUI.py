@@ -9,12 +9,8 @@ from PyQt5 import QtCore
 
 from pygame import mixer
 
-# tymczasowy import
-from ogarnienty_algorytm import *
+from engine import *
 
-
-# import nieaktywny do czasu nowej implementacji silnika gry
-# from engine import *
 
 class WindowWithButtons(QWidget):
 
@@ -29,7 +25,6 @@ class WindowWithButtons(QWidget):
         self.press_sound = mixer.Sound("music/press_effect.wav")
 
         self.buttons = []
-
 
         self.board = Board()
 
@@ -72,7 +67,6 @@ class WindowWithButtons(QWidget):
         self.buttons[8].move(350, 350)
 
         self.show()
-
 
         mixer.music.load('music/background_music.wav')
         mixer.music.play(-1)
@@ -176,6 +170,7 @@ def change_theme(app):
 
     # ustawienie wykonanej palety
     app.setPalette(palette)
+
 
 if __name__ == "__main__":
     pass

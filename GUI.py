@@ -106,6 +106,7 @@ class WindowWithButtons(QWidget):
                     self.board.reset_board()
                     mixer.Channel(5).play(mixer.Sound('music/restart_effect.wav'))
                     mixer.music.set_volume(1)
+                    self.turn.change_turn()
 
                     for button in self.buttons:
                         button.setIcon(QIcon("EMPTY_ICON.ico"))
